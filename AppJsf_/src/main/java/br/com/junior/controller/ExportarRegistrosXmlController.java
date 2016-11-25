@@ -3,9 +3,11 @@ package br.com.junior.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.Serializable;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -65,13 +67,12 @@ public class ExportarRegistrosXmlController implements Serializable {
 		List<PessoaModel> pessoaModels = pessoaRepository.getPessoas();
 
 		Element elementPessoas = new Element("Pessoas");
-		Document document = new Document(elementPessoas);
 
 		pessoaModels.forEach(pessoa -> {
 			Element element = new Element("Pessoa");
 			element.addContent(new Element("codigo").setText(pessoa.getCodigo().toString()));
 			element.addContent(new Element("nome").setText(pessoa.getNome()));
-			element.addContent(new Element("sexo").setText(pessoa.getSexo()));
+			element.addContent(new Element("sexo").setText(pessoa.getSexo().substring(0, 1)));
 			element.addContent(new Element("dataCadastro").setText(pessoa.getDataCadastro().format(dateTimeFormatter)));
 			element.addContent(new Element("email").setText(pessoa.getEmail()));
 			element.addContent(new Element("endereco").setText(pessoa.getEndereco()));
@@ -80,14 +81,17 @@ public class ExportarRegistrosXmlController implements Serializable {
 			elementPessoas.addContent(element);
 		});
 
+		Document document = new Document(elementPessoas);
 		XMLOutputter xmlGerado = new XMLOutputter();
 
 		String nomeArquivo = "pessoas_".concat(java.util.UUID.randomUUID().toString()).concat(".xml");
 		File arquivo = new File("d://xml/".concat(nomeArquivo));
-		FileWriter fileWriter = null;
 		try {
-			fileWriter = new FileWriter(arquivo);
-			xmlGerado.output(document, fileWriter);
+			OutputStream os = new FileOutputStream(arquivo);
+			OutputStreamWriter osw = new OutputStreamWriter(os, "UTF8");
+			xmlGerado.output(document, osw);
+			os.close();
+			osw.close();
 			return arquivo;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
