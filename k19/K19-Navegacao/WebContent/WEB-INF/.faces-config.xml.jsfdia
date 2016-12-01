@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:componentes-visuais.xhtml"
+  PATH="componentes-visuais.xhtml" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:componentes-visuais.xhtml:0" NAME="item"
+   PATH="componentes-visuais.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="proximo::templates-e-modularizacao.xhtml"
+    NAME="output" PATH="templates-e-modularizacao.xhtml"
+    TARGET="rules:templates-e-modularizacao.xhtml" TITLE="proximo" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:templates-e-modularizacao.xhtml"
+  PATH="templates-e-modularizacao.xhtml" SHAPE="256,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:templates-e-modularizacao.xhtml:0" NAME="item"
+   PATH="templates-e-modularizacao.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="proximo::paginas#navegacao.xhtml"
+    NAME="output" PATH="paginas/navegacao.xhtml"
+    TARGET="rules:paginas#navegacao.xhtml" TITLE="proximo" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="anterior::componentes-visuais.xhtml"
+    NAME="output1" PATH="componentes-visuais.xhtml"
+    TARGET="rules:componentes-visuais.xhtml" TITLE="anterior" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:paginas#navegacao.xhtml"
+  PATH="paginas/navegacao.xhtml" SHAPE="32,161,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:paginas#navegacao.xhtml:0" NAME="item"
+   PATH="paginas/navegacao.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="anterior::templates-e-modularizacao.xhtml"
+    NAME="output" PATH="templates-e-modularizacao.xhtml"
+    TARGET="rules:templates-e-modularizacao.xhtml" TITLE="anterior" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+</PROCESS>

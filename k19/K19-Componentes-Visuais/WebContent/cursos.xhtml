@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>k19 - Treinamento</title>
+</h:head>
+
+<h:body>
+	<h:outputStylesheet library="css" name="k19.css" />
+
+	<h:link value="Menu" outcome="menu" />
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Nome:" for="id_nome" />
+			<h:inputText value="#{cursoBean.curso.nome}" id="id_nome" />
+
+			<h:outputLabel value="Sigla:" for="id_sigla" />
+			<h:inputText value="#{cursoBean.curso.sigla}" id="id_sigla" />
+
+			<h:outputLabel value="Exibe:" for="id_exibe" />
+			<h:selectBooleanCheckbox value="#{cursoBean.curso.exibe}" />
+
+		</h:panelGrid>
+		<h:commandButton action="#{cursoBean.adiciona}" value="Adicionar" />
+	</h:form>
+	<h:messages globalOnly="true" />
+	<ui:remove>
+		<h:dataTable value="#{cursoBean.cursos}" var="curso"
+			rendered="#{not empty cursoBean.cursos}">
+			<f:facet name="header">Lista de Cursos</f:facet>
+
+			<h:column>
+				<h:panelGroup rendered="false">
+					<f:facet name="header">Sigla</f:facet>
+					<h:outputLabel value="#{curso.sigla}" rendered="#{!curso.exibe}" />
+				</h:panelGroup>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+			#{curso.nome}
+		</h:column>
+		</h:dataTable>
+	</ui:remove>
+	<h1>Lista de cursos:</h1>
+
+	<ul>
+		<ui:repeat var="curso" value="#{cursoBean.cursos}">
+			<li><h:outputText value="#{curso.sigla} : #{curso.nome}" /></li>
+
+		</ui:repeat>
+	</ul>
+</h:body>
+
+</html>

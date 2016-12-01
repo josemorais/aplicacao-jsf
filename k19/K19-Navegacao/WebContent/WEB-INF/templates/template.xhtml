@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTDXHTML1.0Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>K19 Treinamentos</title>
+</h:head>
+<h:body>
+
+	<div id="header" style="text-align: center">
+		<h1>K19-Desenvolvimento Web com JSF2 e JPA2</h1>
+	</div>
+	<h:form>
+		<h:commandButton action="/paginas/navegacao" value="Componentes" />
+	</h:form>
+
+	<h:link value="Componentes Visuais" outcome="proximo" /> - 
+	<h:link value="Templates e Modularização"
+		outcome="/templates-e-modularizacao" /> - 
+	<h:link value="Navegação" outcome="/paginas/navegacao" />
+	<ui:insert name="corpo-da-pagina">Espaço para o conteúdo da tela</ui:insert>
+
+	<div id="footer" style="text-align: center">
+		<hr />
+		&copy; 2012 K19. Todososdireitosreservados.
+	</div>
+</h:body>
+</html>

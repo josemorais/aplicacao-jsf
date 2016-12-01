@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>k19 - Treinamentos</title>
+</h:head>
+<h:body>
+	<h:form id="form">
+		<p:dataTable id="id-tabela" value="#{dataTableBean.cursos}"
+			var="curso" filteredValue="#{dataTableBean.cursosFiltrados}"
+			paginator="true" rowKey="#{curso.sigla}" rows="4"
+			selectionMode="multiple"
+			selection="#{dataTableBean.cursosSelecionados}">
+
+			<f:facet name="header">Cursos da k19</f:facet>
+
+			<p:column headerText="ID" sortBy="#{curso.id}" filterBy="#{curso.id}">
+				<h:outputText value="#{curso.id}" />
+			</p:column>
+
+			<p:column headerText="LOGO">
+				<h:graphicImage value="#{curso.logo}" />
+			</p:column>
+
+			<p:column headerText="SIGLA" sortBy="#{curso.sigla}"
+				filterBy="#{curso.sigla}">
+				<h:outputText value="#{curso.sigla}" />
+			</p:column>
+
+			<p:column headerText="NOME" sortBy="#{curso.nome}"
+				filterBy="#{curso.nome}">
+				<h:outputText value="#{curso.nome}" />
+			</p:column>
+
+			<f:facet name="footer">
+				<h:panelGrid columns="3">
+					<h:panelGroup>
+						Exportar toda a tabela para:
+						<h:commandButton value="XLS">
+							<p:dataExporter pageOnly="true" type="xls" target="id-tabela" fileName="cursos" />
+						</h:commandButton>
+						<h:commandButton value="PDF">
+							<p:dataExporter type="pdf" target="id-tabela" fileName="cursos" />
+						</h:commandButton>
+					</h:panelGroup>
+				</h:panelGrid>
+			</f:facet>
+
+		</p:dataTable>
+
+	</h:form>
+</h:body>
+
+
+</html>

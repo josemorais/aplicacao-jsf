@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>k19 - Treinamentos</title>
+</h:head>
+<h:body>
+	<h:form>
+		<f:event listener="#{extratoBean.validaDatas}" type="postValidate"></f:event>
+		<h:messages />
+
+		<h:outputLabel value="Data Inicial:" for="id_data_inicial" />
+		<h:inputText value="#{extratoBean.dataInicial}" id="id_data_inicial"
+			required="true">
+			<f:convertDateTime pattern="dd/MM/yyyy" />
+		</h:inputText>
+		<h:outputLabel value="Data Final" for="id_data_final" />
+		<h:inputText value="#{extratoBean.dataFinal}" id="id_data_final"
+			required="true">
+			<f:convertDateTime locale="pt_BR" type="date" />
+		</h:inputText>
+
+		<h:commandButton action="#{extratoBean.geraExtrato}"
+			value="Ver extrato" />
+	</h:form>
+</h:body>
+
+</html>

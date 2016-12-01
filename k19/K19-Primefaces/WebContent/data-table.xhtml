@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>k19 - Treinamentos</title>
+</h:head>
+<h:body>
+	<h:form id="form">
+		<p:dataTable value="#{dataTableBean.cursos}" var="curso"
+			filteredValue="#{dataTableBean.cursosFiltrados}" paginator="true"
+			rowKey="#{curso.sigla}" rows="4" selectionMode="multiple"
+			selection="#{dataTableBean.cursosSelecionados}">
+
+			<f:facet name="header">Cursos da k19</f:facet>
+
+			<p:column headerText="ID" sortBy="#{curso.id}" filterBy="#{curso.id}">
+			#{curso.id}
+			</p:column>
+
+			<p:column headerText="LOGO">
+				<h:graphicImage value="#{curso.logo}" />
+			</p:column>
+
+			<p:column headerText="SIGLA" sortBy="#{curso.sigla}"
+				filterBy="#{curso.sigla}">
+			#{curso.sigla}
+			</p:column>
+
+			<p:column headerText="NOME" sortBy="#{curso.nome}"
+				filterBy="#{curso.nome}">
+			#{curso.nome}
+			</p:column>
+
+			<f:facet name="footer">
+				<p:commandButton value="Escolher Curso"
+					update=":form:curso-escolhido" />
+			</f:facet>
+
+		</p:dataTable>
+
+		<p:panel id="curso-escolhido" header="Cursos Escolhidos">
+			<ul>
+				<ui:repeat var="curso" value="#{dataTableBean.cursosSelecionados}"
+					rendered="#{not empty dataTableBean.cursosSelecionados}">
+					<li><h:outputText value="#{curso.nome}" /></li>
+				</ui:repeat>
+				<h:panelGroup
+					rendered="#{dataTableBean.cursosSelecionados == null or empty dataTableBean.cursosSelecionados }">
+					<li>Nenhum curso escolhido</li>
+				</h:panelGroup>
+			</ul>
+		</p:panel>
+	</h:form>
+</h:body>
+
+
+</html>

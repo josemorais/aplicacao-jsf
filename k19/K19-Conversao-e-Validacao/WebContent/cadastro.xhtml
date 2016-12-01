@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>k19 - Treinamentos</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:panelGrid columns="3">
+			<h:outputLabel value="Salário:" for="id-salario" />
+			<h:inputText id="id-salario"
+				value="#{funcionarioBean.funcionario.salario}">
+				<f:convertNumber type="number" />
+			</h:inputText>
+			<h:message for="id-salario" />
+
+			<h:outputLabel value="Código:" />
+			<h:inputText id="id-codigo"
+				value="#{funcionarioBean.funcionario.codigo}">
+				<f:ajax event="mouseout" execute="@this" render="id_mensagem" />
+				<f:validateLength minimum="3" maximum="5" />
+			</h:inputText>
+			<h:message for="id-codigo" id="id_mensagem" style="color : red" />
+
+			<h:outputLabel value="Aniverário" for="id-aniversario" />
+			<h:inputText id="id-aniversario"
+				value="#{funcionarioBean.funcionario.aniversario}"
+				converterMessage="Digite uma data valida">
+				<f:convertDateTime pattern="HH:mm dd-MM-yyyy" />
+			</h:inputText>
+			<h:message for="id-aniversario" showDetail="true" showSummary="true" />
+
+			<h:commandButton value="Cadastrar" />
+		</h:panelGrid>
+	</h:form>
+</h:body>
+
+</html>

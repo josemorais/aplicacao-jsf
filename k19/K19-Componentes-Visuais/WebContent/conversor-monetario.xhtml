@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>k19 - Treinamentos</title>
+</h:head>
+<h:body>
+
+	<h:form>
+		<h:panelGrid columns="2">
+
+			<h:commandButton action="#{conversorMonetarioBean.converte}"
+				value="Converter" />
+
+			<h:panelGroup>
+				<h:inputText value="#{conversorMonetarioBean.valor}" />
+
+				<h:outputLabel value="De" for="de" />
+
+				<h:selectOneMenu value="#{conversorMonetarioBean.de}">
+					<f:selectItems value="#{conversorMonetarioBean.taxas.keySet()}"
+						var="moeda" itemValue="#{moeda}" itemLabel="#{moeda}" />
+				</h:selectOneMenu>
+				<h:outputLabel value="Para" for="para" />
+
+				<h:selectOneMenu value="#{conversorMonetarioBean.para}">
+					<f:selectItems value="#{conversorMonetarioBean.taxas.keySet()}"
+						var="moeda" itemValue="#{moeda}" itemLabel="#{moeda}" />
+				</h:selectOneMenu>
+			</h:panelGroup>
+		</h:panelGrid>
+
+	</h:form>
+	<h:outputFormat value="{0} em {1} equivale a {2} em {3}"
+		rendered="#{conversorMonetarioBean.resultado != null}">
+		<f:param value="#{conversorMonetarioBean.valor}" />
+		<f:param value="#{conversorMonetarioBean.de}" />
+		<f:param value="#{conversorMonetarioBean.resultado}" />
+		<f:param value="#{conversorMonetarioBean.para}" />
+
+	</h:outputFormat>
+
+
+
+
+
+
+</h:body>
+</html>
